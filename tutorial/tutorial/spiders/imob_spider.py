@@ -8,7 +8,7 @@ class ImobSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            "https://www.imobiliare.ro/vanzare-apartamente/iasi/copou/apartament-de-vanzare-2-camere-XCEQ101LO",
+            "https://storia.ro/ro/oferta/nicolina-biserica-catolica-4-camere-decomandat-3-balcoane-IDsOdz.html",
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
