@@ -8,7 +8,7 @@ class ImobSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            "https://storia.ro/ro/oferta/vanzare-apartament-2-camere-podu-ros-aproape-de-sensul-giratoriu-IDzvZo",
+            "https://www.storia.ro/ro/oferta/nicolina-biserica-catolica-4-camere-decomandat-3-balcoane-IDsOdz.html",
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -22,5 +22,11 @@ class ImobSpider(scrapy.Spider):
     """
     def parse(self, response):
         yield {
-            "Titlu": response.css("h1.efcnut38::text").get()
+            "Titlu": response.css("h1.efcnut38::text").get(),
+            "Pret": response.css("strong.e1l1avn10::text").get(), 
+            "Agent": response.css("span.e1ckmovd4::text").get(),
+            "Adresa": response.css("a.exgq9l20::text").get(),
+            "Suprafata utila": response.css("div.enb64yk5::text").get(),
+            "Numar de camere": response.css("a.enb64yk0::text").get(),
+            "Etaj": response.css("div.enb64yk5::text").get()
         }
