@@ -24,9 +24,10 @@ class ImobSpider(scrapy.Spider):
         yield {
             "Titlu": response.css("h1.efcnut38::text").get(),
             "Pret": response.css("strong.e1l1avn10::text").get(), 
-            "Agent": response.css("span.e1ckmovd4::text").get(),
+            "Agent": response.xpath("//span[contains(@class, 'e1ckmovd4')]//text()").get(),
+            "Agentie": response.xpath("//div[contains(@class, 'e1ckmovd7')]//text()").get(),
             "Adresa": response.css("a.exgq9l20::text").get(),
             "Suprafata utila": response.css("div.enb64yk5::text").get(),
             "Numar de camere": response.css("a.enb64yk0::text").get(),
-            "Etaj": response.css("div.enb64yk5::text").get()
+            "Etaj": response.xpath("//div[contains(@aria-label, 'Etaj')]/div[contains(@class, 'enb64yk2')]/div[contains(@class, 'enb64yk5')]//text()").get(),
         }
