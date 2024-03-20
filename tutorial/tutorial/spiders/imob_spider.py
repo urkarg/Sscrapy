@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import scrapy
+import json
 
 
 class ImobSpider(scrapy.Spider):
@@ -21,11 +22,15 @@ class ImobSpider(scrapy.Spider):
         self.log(f"Saved file {filename}")
     """
     def parse(self, response):
+
+        agent_details = response.xpath("//script[contains(@id, '__NEXT_DATA__')]//text()")
         yield {
             "Titlu": response.css("h1.efcnut38::text").get(),
             "Pret": response.css("strong.e1l1avn10::text").get(), 
-            "Agent": response.xpath("//span[contains(@class, 'e1ckmovd4')]//text()").get(),
-            "Agentie": response.xpath("//div[contains(@class, 'e1ckmovd7')]//text()").get(),
+            #"Agent": response.xpath("//span[contains(@class, 'e1ckmovd4')]//text()").get(),
+            "Agent": response.xpath("/html/body/script[3]//text()").re(r"contactDetails"),
+            "Agentie": response.xpath("/div/div[contains(@class, 'ehfvn5x1')]/div[contains(@class, 'e11fbx770')]/strong[contains(@aria-label, 'Numele agenției')]//text()").get(),
+            "Agentie": response.xpath("//p[contains(@class, 'e1vciwah5')]//text()").get(),
             "Adresa": response.css("a.exgq9l20::text").get(),
             "Suprafata utila": response.css("div.enb64yk5::text").get(),
             "Numar de camere": response.css("a.enb64yk0::text").get(),

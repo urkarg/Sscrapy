@@ -2,8 +2,8 @@
     {
         "Titlu": "Nicolina - Biserica Catolica,  4 camere decomandat, 3 balcoane",
         "Pret": "120 000 €",
-        "Agent": null,
-        "Agentie": null,
+        "Agent": [],
+        "Agentie": "Agentia Imobiliara Casa Alba",
         "Adresa": "Soseaua Nicolina, CUG, Iasi, Iasi",
         "Suprafata utila": "96,81 m²",
         "Numar de camere": "4 ",
